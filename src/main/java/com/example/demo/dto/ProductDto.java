@@ -3,9 +3,18 @@ package com.example.demo.dto;
 public class ProductDto {
 
     private  boolean inStock;
-    private int salePrice;
+    private Double salePrice;
     private String title;
     private String description;
+    private String location;
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
 
     public boolean isInStock() {
         return inStock;
@@ -15,11 +24,11 @@ public class ProductDto {
         this.inStock = inStock;
     }
 
-    public int getSalePrice() {
+    public Double getSalePrice() {
         return salePrice;
     }
 
-    public void setSalePrice(int salePrice) {
+    public void setSalePrice(Double salePrice) {
         this.salePrice = salePrice;
     }
 

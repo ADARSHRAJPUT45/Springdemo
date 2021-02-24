@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
@@ -21,9 +20,9 @@ import org.slf4j.Logger;
 
 
 @Service
-public class ProductService implements ProductInterface {
+public class ProductServiceImpl implements ProductInterface {
 
-    private static final Logger LOG = LoggerFactory.getLogger(ProductService.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ProductServiceImpl.class);
 
     @Autowired
     private SearchClient searchClient;
@@ -56,9 +55,11 @@ public class ProductService implements ProductInterface {
             LOG.info("finished search term products");
             responseDto.setProductDtoList(list);
         };
+
+
         Runnable runnable2 = () -> {
             LOG.info("started location products");
-            Map<String, Object> productResponseLocation = searchClient.getProducts(productRequestDto.getGetStockLocation() + productRequestDto.getLocation());
+            Map<String, Object> productResponseLocation = searchClient.getProducts("stockLocation:"+"\""+productRequestDto.getStockLocation()+"\"");
             List<Map<String, Object>> productsLocation = (List<Map<String, Object>>) ((Map<String, Object>) productResponseLocation.get("response")).get("docs");
             ArrayList<ProductDto> listLocation = new ArrayList<>();
             for (Map<String, Object> product : productsLocation) {
@@ -66,7 +67,7 @@ public class ProductService implements ProductInterface {
                 productDto.setDescription((String) product.get("description"));
                 productDto.setTitle((String) product.get("name"));
                 productDto.setSalePrice((Double) product.get("salePrice"));
-                productDto.setLocation(product.get("stockLocation").toString());
+                //productDto.setStockLocation(product.get("stockLocation").toString());
                 int res = (int) product.get("isInStock");
                 if (res == 1) {
                     productDto.setInStock(true);

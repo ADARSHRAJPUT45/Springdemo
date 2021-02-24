@@ -1,5 +1,8 @@
 package com.example.demo.dto;
 
+import jdk.nashorn.internal.objects.annotations.Getter;
+
+
 public class ProductDto {
 
     private  boolean inStock;
@@ -7,6 +10,7 @@ public class ProductDto {
     private String title;
     private String description;
     private String location;
+    private String stockLocation;
 
     public String getLocation() {
         return location;
@@ -46,6 +50,14 @@ public class ProductDto {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getStockLocation() {
+        return stockLocation;
+    }
+
+    public void setStockLocation(String stockLocation) {
+        this.stockLocation = stockLocation;
     }
 }
 

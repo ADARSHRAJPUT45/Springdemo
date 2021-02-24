@@ -3,31 +3,22 @@ package com.example.demo.dto;
 public class ProductRequestDto {
 
     private String searchTerm;
-    private String location;
-    private  String getStockLocation = "stockLocation";
+    private String stockLocation;
+
 
     public String getSearchTerm() {
         return searchTerm;
     }
 
-
     public void setSearchTerm(String searchTerm) {
         this.searchTerm = searchTerm;
     }
 
-    public String getLocation(){
-        return location;
+    public String getStockLocation() {
+        return stockLocation;
     }
 
-    public void getLocation(String location) {
-        this.location = location;
-    }
-
-    public String getGetStockLocation() {
-        return getStockLocation;
-    }
-
-    public void setGetStockLocation(String getStockLocation) {
-        this.getStockLocation = getStockLocation;
+    public void setStockLocation(String stockLocation) {
+        this.stockLocation = stockLocation;
     }
 }
